@@ -3,7 +3,6 @@ import mongoose from "mongoose";
 // create employee schema
 const empleadoSchema = new mongoose.Schema(
   {
-    _id: { type: String, required: true },
     nombre: { type: String, required: true },
     documento: { type: String, required: true, unique: true },
     cargo: { type: String, required: true },
