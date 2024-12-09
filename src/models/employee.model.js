@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 // create employee schema
-const empleadoSchema = new mongoose.Schema(
+const employeeSchema = new mongoose.Schema(
   {
     nombre: { type: String, required: true },
     documento: { type: String, required: true, unique: true },
@@ -25,4 +25,4 @@ const empleadoSchema = new mongoose.Schema(
   { timestamps: true },
 );
 
-export default mongoose.model("Empleado", empleadoSchema);
+export default mongoose.model("Employee", employeeSchema);

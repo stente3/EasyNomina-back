@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { login, register, logout } from "../controllers/auth.controller.js";
 import { authRequired } from "../middlewares/validateToken.js";
-import adminModel from "../models/administrador.model.js";
+import adminModel from "../models/admin.model.js";
 
 // create router
 const router = Router();

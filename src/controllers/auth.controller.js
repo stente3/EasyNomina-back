@@ -1,4 +1,4 @@
-import adminModel from "../models/administrador.model.js";
+import adminModel from "../models/admin.model.js";
 import bcrypt from "bcryptjs";
 import { createAccessToken } from "../libs/jwt.js";
 
