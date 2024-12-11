@@ -23,7 +23,7 @@ const register = async (req, res) => {
     res.cookie("token", token, {
       sameSite: "lax",
       crossOrigin: true,
-      secure: false,
+      secure: true,
     });
 
     // send response
@@ -58,7 +58,7 @@ const login = async (req, res) => {
     res.cookie("token", token, {
       sameSite: "lax",
       crossOrigin: true,
-      secure: false,
+      secure: true,
     });
 
     // send response
