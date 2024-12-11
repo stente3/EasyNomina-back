@@ -20,7 +20,10 @@ const register = async (req, res) => {
     const token = await createAccessToken({ id: userSaved._id });
 
     // set cookie
-    res.cookie("token", token);
+    res.cookie("token", token, {
+      httpOnly: true,
+      sameSite: "None",
+    });
 
     // send response
     res.json({ id: userSaved._id, name: userSaved.name });
@@ -51,7 +54,10 @@ const login = async (req, res) => {
     // create access token
     const token = await createAccessToken({ id: userFound._id });
 
-    res.cookie("token", token);
+    res.cookie("token", token, {
+      httpOnly: true,
+      sameSite: "None",
+    });
 
     // send response
     res.json({ id: userFound._id, name: userFound.name });
