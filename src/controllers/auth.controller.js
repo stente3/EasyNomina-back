@@ -21,8 +21,9 @@ const register = async (req, res) => {
 
     // set cookie
     res.cookie("token", token, {
-      httpOnly: true,
-      sameSite: "None",
+      sameSite: "lax",
+      crossOrigin: true,
+      secure: false,
     });
 
     // send response
@@ -55,8 +56,9 @@ const login = async (req, res) => {
     const token = await createAccessToken({ id: userFound._id });
 
     res.cookie("token", token, {
-      httpOnly: true,
-      sameSite: "None",
+      sameSite: "lax",
+      crossOrigin: true,
+      secure: false,
     });
 
     // send response
