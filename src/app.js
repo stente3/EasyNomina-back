@@ -14,7 +14,7 @@ const app = express();
 // middlewares
 app.use(
   cors({
-    origin: [process.env.CLIENT_URL, "camilo123.com"],
+    origin: [process.env.CLIENT_URL, "http://camilo123.com:5173"],
     credentials: true, // allow cookies
   }),
 ); // enable cors
