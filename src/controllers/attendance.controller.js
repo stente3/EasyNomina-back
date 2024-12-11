@@ -2,58 +2,101 @@ import attendanceModel from "../models/attendance.model.js";
 
 // create a new employee attendance
 const createEmployeeAttendance = async (req, res) => {
-  // get data from request
-  const { empleado_id, fecha, horas_trabajadas, extras, ausencia } = req.body;
+  try {
+    // get data from request
+    const { empleado_id, fecha, horas_trabajadas, horas_extras, ausencia } =
+      req.body;
 
-  // create new employee attendance
-  const newEmployeeAttendance = new attendanceModel({
-    empleado_id,
-    fecha,
-    horas_trabajadas,
-    extras,
-    ausencia,
-  });
-  // save new employee attendance
-  const employeeAttendanceSaved = await newEmployeeAttendance.save();
-  // send response
-  res.json(employeeAttendanceSaved);
+    // create new employee attendance
+    const newEmployeeAttendance = new attendanceModel({
+      empleado_id,
+      fecha,
+      horas_trabajadas,
+      horas_extras,
+      ausencia,
+    });
+
+    // save new employee attendance
+    const employeeAttendanceSaved = await newEmployeeAttendance
+      .save()
+      .catch((err) => {
+        throw new Error("Error saving attendance: " + err.message);
+      });
+
+    // send response
+    res.json(employeeAttendanceSaved);
+  } catch (error) {
+    console.error(error);
+    res
+      .status(500)
+      .json({ error: "Ocurrió un error al registrar la asistencia" });
+  }
 };
 
 // show all attendances of an employee
 const showEmployeeAttendances = async (req, res) => {
-  // get data from request
-  const { empleado_id } = req.body;
+  try {
+    // get data from request
+    const { empleado_id } = req.body;
 
-  // find employee attendances
-  const employeeAttendances = await attendanceModel.find({ empleado_id });
+    // validate employee ID
+    if (!empleado_id || typeof empleado_id !== "string") {
+      throw new Error("Invalid or missing employee ID");
+    }
 
-  // send response
-  res.json(employeeAttendances);
+    // find employee attendances
+    const employeeAttendances = await attendanceModel.find({ empleado_id });
+
+    // send response
+    res.json(employeeAttendances);
+  } catch (error) {
+    console.error(error);
+    res
+      .status(500)
+      .json({ error: "Ocurrió un error al mostrar las asistencias" });
+  }
 };
 
 // shows employee attendances of a specific period
 const showEmployeeAttendancesByPeriod = async (req, res) => {
-  // get data from request
-  const { empleado_id, inicio, fin } = req.body;
+  try {
+    // get data from request
+    const { empleado_id, inicio, fin } = req.body;
 
-  // find employee attendances
-  const employeeAttendances = await attendanceModel.find({
-    empleado_id,
-    fecha: {
-      $gte: new Date(inicio),
-      $lte: new Date(fin),
-    },
-  });
+    // validate inputs
+    if (!empleado_id || typeof empleado_id !== "string") {
+      throw new Error("Invalid or missing employee ID");
+    }
+    if (!inicio || !fin) {
+      throw new Error("Invalid or missing date range");
+    }
 
-  // send response
-  res.json(employeeAttendances);
+    // find employee attendances
+    const employeeAttendances = await attendanceModel.find({
+      empleado_id,
+      fecha: {
+        $gte: new Date(inicio),
+        $lte: new Date(fin),
+      },
+    });
+
+    // send response
+    res.json(employeeAttendances);
+  } catch (error) {
+    console.error(error);
+    res
+      .status(500)
+      .json({
+        error: "Ocurrió un error al mostrar las asistencias del período",
+      });
+  }
 };
 
 // edit employee attendance
 const editEmployeeAttendance = async (req, res) => {
   try {
     // get data from request
-    const { id, fecha, horas_trabajadas, extras, ausencia } = req.body;
+    const { id, fecha, horas_trabajadas, horas_extras, ausencia } = req.body;
 
     // search for employee attendance
     const employeeAttendance = await attendanceModel.findById(id);
@@ -68,7 +111,7 @@ const editEmployeeAttendance = async (req, res) => {
       $set: {
         fecha,
         horas_trabajadas,
-        extras,
+        horas_extras,
         ausencia,
       },
     });

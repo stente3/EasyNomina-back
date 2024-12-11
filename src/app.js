@@ -3,6 +3,7 @@ import morgan from "morgan";
 import authRoutes from "./routes/auth.routes.js";
 import employeesRoutes from "./routes/employees.routes.js";
 import attendanceRoutes from "./routes/attendance.routes.js";
+import payrollRoutes from "./routes/payroll.routes.js";
 import cookieParser from "cookie-parser";
 import "dotenv/config";
 import cors from "cors";
@@ -23,5 +24,6 @@ app.use(cookieParser()); // parse cookies
 app.use("/api", authRoutes); // mount auth routes
 app.use("/api", employeesRoutes); // mount employees routes
 app.use("/api", attendanceRoutes); // mount attendance routes
+app.use("/api", payrollRoutes); // mount payroll routes
 
 export default app;

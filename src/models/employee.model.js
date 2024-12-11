@@ -8,8 +8,14 @@ const employeeSchema = new mongoose.Schema(
     cargo: { type: String, required: true },
     salario_base: { type: Number, required: true },
     beneficios: {
-      subsidio_transporte: { type: Number, default: 0 },
-      otros: { type: Number, default: 0 },
+      type: [
+        {
+          motivo: { type: String, required: true },
+          cantidad: { type: Number, required: true },
+          descripcion: { type: String, required: false },
+        },
+      ],
+      default: [],
     },
     estado: { type: String, enum: ["activo", "inactivo"], default: "activo" },
     fecha_contratacion: { type: Date, required: true },
