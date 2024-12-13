@@ -88,3 +88,68 @@ erDiagram
 - ⬜ **Optimización del Frontend Adaptativo**: Mejoras en la experiencia de usuario y diseño visual para una navegación fluida y eficiente. (Por hacer)
 
 - ⬜ **Pruebas de Seguridad**: Verificación de la protección de datos sensibles en el sistema, tanto para administradores como empleados. (Por hacer)
+
+## Estructura del proyecto
+La estructura principal del proyecto es la siguiente:
+
+```
+.
+└── src
+    ├── controllers  # Lógica del controlador
+    ├── libs         # Librerías y utilidades
+    ├── middlewares  # Funciones intermedias para la gestión de solicitudes
+    ├── models       # Modelos de datos para la aplicación
+    ├── routes       # Definición de rutas y endpoints
+    └── schemas      # Esquemas de validación y estructuras de datos
+```
+
+## Requisitos previos
+Asegúrate de tener instalado lo siguiente antes de comenzar:
+
+- [Node.js](https://nodejs.org/) (v14 o superior recomendado)
+- [npm](https://www.npmjs.com/)
+
+## Instalación y configuración
+Sigue los pasos a continuación para configurar y ejecutar el proyecto localmente:
+
+1. Clona este repositorio:
+   ```bash
+   git clone https://github.com/stente3/EasyNomina-back.git
+   ```
+
+2. Navega al directorio del proyecto:
+   ```bash
+   cd EasyNomina-back
+   ```
+
+3. Instala las dependencias:
+   ```bash
+   npm install
+   ```
+
+4. Inicia el servidor de desarrollo:
+   ```bash
+   npm run dev
+   ```
+
+
+## Scripts disponibles
+Actualmente, el proyecto cuenta con el siguiente script:
+
+- `npm run dev`: Inicia el proyecto en modo desarrollo.
+
+## Tecnologías utilizadas
+- **[cors](https://www.npmjs.com/package/cors)**: Gestión de políticas de acceso entre dominios.
+- **[bcryptjs](https://www.npmjs.com/package/bcryptjs)**: Cifrado de contraseñas.
+- **[cookie-parser](https://www.npmjs.com/package/cookie-parser)**: Manejo de cookies en las solicitudes HTTP.
+- **[dotenv](https://www.npmjs.com/package/dotenv)**: Gestión de variables de entorno.
+- **[express](https://www.npmjs.com/package/express)**: Framework para aplicaciones web y API.
+- **[jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken)**: Manejo de autenticación basada en tokens.
+- **[mongodb](https://www.mongodb.com/)**: Base de datos NoSQL.
+- **[mongoose](https://mongoosejs.com/)**: Modelado de datos para MongoDB.
+- **[morgan](https://www.npmjs.com/package/morgan)**: Registro de solicitudes HTTP.
+
+## Licencia
+Este proyecto está licenciado bajo la MIT License. Consulta el archivo [LICENSE](https://github.com/stente3/EasyNomina-back/blob/main/LICENSE) para más información.
+
+
